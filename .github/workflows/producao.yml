@@ -41,9 +41,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y curl
+          export FLYCTL_INSTALL="$HOME/.fly"
           export PATH="$FLYCTL_INSTALL/bin:$PATH"
-          sudo curl -L https://fly.io/install.sh | sh
-          sudo flyctl --version
+          curl -L https://fly.io/install.sh | sh
+          source ~/.bashrc  
+          flyctl --version
 
       - name: Login to Fly.io
         run: flyctl auth login -e ${{secrets.FLY_USERNAME}} -p ${{secrets.FLY_PASSWORD}}
