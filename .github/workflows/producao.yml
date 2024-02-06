@@ -41,7 +41,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y curl
-          export FLYCTL_INSTALL="/var/services/homes/runner/work/_temp/.fly"
           export PATH="$FLYCTL_INSTALL/bin:$PATH"
           sudo curl -L https://fly.io/install.sh | sh
           sudo flyctl --version
