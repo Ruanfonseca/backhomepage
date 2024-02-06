@@ -45,7 +45,6 @@ jobs:
           export PATH="$FLYCTL_INSTALL/bin:$PATH"
           curl -L https://fly.io/install.sh | sh
           source ~/.bashrc  
-          flyctl --version
 
       - name: Login to Fly.io
         run: flyctl auth login -e ${{secrets.FLY_USERNAME}} -p ${{secrets.FLY_PASSWORD}}
