@@ -22,23 +22,21 @@ public class MailController {
     }
 
     @PostMapping("/sendmail")
-    public ResponseEntity<String> enviaEmail(@RequestBody @Valid Mail mail) {
+    public ResponseEntity<?> enviaEmail(@RequestBody @Valid Mail mail) {
         try {
 
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("rookpawnletter@outlook.com");
             message.setTo("whitelook22@outlook.com");
             message.setSubject("Assunto do E-mail");
-            message.setText("Oi meu nome é "+mail.getNome() + " entrei no seu site , gostaria de conversar com vc" +
-                    "meus dados são "+mail.getEmail() + mail.getCelular() +"e o assunto é o seguinte"+mail.getMensagem());
+            message.setText("Oi meu nome é "+mail.getNome() + " entrei no seu site , gostaria de conversar com vc "  +
+                    " meus dados são  "+mail.getEmail() + " - "+ mail.getTelefone() +" e o assunto é o seguinte "+mail.getMensagem());
             javaMailSender.send(message);
-            String msg = "E-mail enviado com sucesso!";
 
-            return ResponseEntity.ok(msg);
+            return ResponseEntity.status(200).build();
         } catch (Exception e) {
             e.printStackTrace();
-            String msg = "Erro ao enviar o e-mail: ";
-            return ResponseEntity.status(500).body(msg + e.getMessage());
+            return ResponseEntity.status(500).build();
         }
     }
 }

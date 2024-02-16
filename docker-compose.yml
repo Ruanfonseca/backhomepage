@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  meu-site:
+    image: ruanfonseca/meu-site:v1
+    ports:
+      - "8080:80"
+    networks:
+      - meu-site-network
+
+  back-site:
+    image: ruanfonseca/back-site:v1
+    ports:
+      - "8083:83"
+    networks:
+      - meu-site-network
+
+networks:
+  meu-site-network:
+    driver: bridge
